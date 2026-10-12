@@ -7,108 +7,131 @@
 <meta name="description" content="Tabs and results from debate tournaments run by DebSoc IIT Ropar.">
 <link rel="icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
 <style>
+  /* Light palette matches the Tabbycat tab pages; dark matches eristic26-tab/static/theme.css */
   :root {
-    --brown: #4B2102;
-    --brown-soft: #7a3d12;
-    --bg: #faf7f4;
-    --card: #ffffff;
-    --text: #22170f;
-    --muted: #6f6258;
-    --border: #e9e1d9;
-    --accent-bg: #f4ebe2;
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --surface-2: #f1f3f5;
+    --border: #e9ecef;
+    --text: #212529;
+    --heading: #212529;
+    --muted: #868e96;
+    --primary: #663da0;
+    --primary-hover: #573488;
+    --link: #663da0;
+    --success-bg: #ccf2e8;
+    --success-border: #b8edde;
+    --success-text: #006348;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #17110c;
-      --card: #211913;
-      --text: #f3ece6;
-      --muted: #b3a597;
-      --border: #3a2d23;
-      --accent-bg: #2d2119;
-      --brown-soft: #d79a62;
-    }
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #121418;
+    --surface: #1b1e24;
+    --surface-2: #242831;
+    --border: #2a2e36;
+    --text: #e4e6eb;
+    --heading: #f1f3f5;
+    --muted: #9aa1ab;
+    --link: #b794f6;
+    --success-bg: #0f3329;
+    --success-border: #165442;
+    --success-text: #8ce0c2;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-    line-height: 1.5;
+    font-family: Inter, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.4;
   }
+  a { color: var(--link); }
   .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
 
-  header {
-    background: var(--brown);
-    color: #fff;
-    padding: 56px 0 72px;
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
   }
-  .brand { display: flex; align-items: center; gap: 16px; }
-  .brand img {
-    width: 64px; height: 64px;
-    background: #fff; border-radius: 14px; padding: 6px;
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; color: var(--heading); font-weight: 600; text-decoration: none;
   }
-  .brand h1 { margin: 0; font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; }
-  .brand p { margin: 2px 0 0; opacity: 0.8; }
+  .brand img { width: 32px; height: 32px; background: #fff; border-radius: 6px; padding: 2px; }
 
-  main { margin-top: -40px; padding-bottom: 48px; }
+  .hero { padding: 40px 0 8px; }
+  .hero h1 { margin: 0; font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 700; color: var(--heading); }
+  .hero p { margin: 6px 0 0; color: var(--muted); }
+
   h2 {
-    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--muted); margin: 32px 0 12px;
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 32px 0 12px; font-weight: 600;
   }
   .card {
-    background: var(--card);
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 8px;
     padding: 24px;
-    box-shadow: 0 10px 30px rgba(75, 33, 2, 0.08);
   }
   .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
-  .card h3 { margin: 0; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.01em; }
+  .card h3 { margin: 0; font-size: 1.5rem; font-weight: 700; color: var(--heading); }
   .meta { color: var(--muted); margin: 4px 0 0; }
   .badge {
-    background: var(--accent-bg); color: var(--brown-soft);
+    background: var(--surface-2); color: var(--muted);
     font-size: 0.8rem; font-weight: 600;
     padding: 4px 10px; border-radius: 999px; white-space: nowrap;
   }
   .champion {
     margin: 20px 0;
-    padding: 14px 16px;
-    background: var(--accent-bg);
-    border-radius: 12px;
+    padding: 12px 16px;
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    color: var(--success-text);
+    border-radius: 6px;
   }
-  .champion small { display: block; color: var(--muted); font-size: 0.8rem; }
+  .champion small { display: block; font-size: 0.8rem; opacity: 0.85; }
   .champion strong { font-size: 1.05rem; }
   .actions { display: flex; gap: 10px; flex-wrap: wrap; }
   .btn {
     display: inline-block; text-decoration: none; font-weight: 600;
-    padding: 12px 20px; border-radius: 10px;
-    border: 2px solid var(--brown);
+    padding: 10px 18px; border-radius: 6px; border: 1px solid var(--primary);
   }
-  .btn-primary { background: var(--brown); color: #fff; }
-  .btn-primary:hover { background: #5e2a04; }
-  .btn-ghost { color: var(--brown-soft); border-color: var(--border); }
-  .btn-ghost:hover { border-color: var(--brown-soft); }
-  .btn:focus-visible { outline: 3px solid var(--brown-soft); outline-offset: 2px; }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-hover); }
+  .btn-outline { color: var(--link); border-color: var(--border); background: var(--surface); }
+  .btn-outline:hover { border-color: var(--link); }
+  .btn:focus-visible, .theme-toggle:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
 
-  footer { color: var(--muted); font-size: 0.85rem; padding: 24px 0 40px; border-top: 1px solid var(--border); }
+  footer { color: var(--muted); font-size: 0.85rem; padding: 40px 0; }
   footer a { color: inherit; }
+
+  .theme-toggle {
+    position: fixed; right: 16px; bottom: 16px; z-index: 10;
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    font-size: 20px; line-height: 1; cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+  }
 </style>
 </head>
 <body>
-  <header>
-    <div class="wrap brand">
-      <img src="logo.png" alt="DebSoc IIT Ropar logo">
-      <div>
-        <h1>RoparCat</h1>
-        <p>Debate tournaments by DebSoc IIT Ropar</p>
-      </div>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="./">
+        <img src="logo.png" alt="">
+        RoparCat
+      </a>
     </div>
-  </header>
+  </nav>
 
   <main class="wrap">
+    <section class="hero">
+      <h1>RoparCat</h1>
+      <p>Debate tournaments by DebSoc IIT Ropar</p>
+    </section>
+
     <h2>Available tournaments</h2>
 
     <article class="card">
@@ -127,7 +150,7 @@
 
       <div class="actions">
         <a class="btn btn-primary" href="eristic26-tab/team/">View Eristic 26 tab →</a>
-        <a class="btn btn-ghost" href="eristic26-tab/speaker/">Speaker tab</a>
+        <a class="btn btn-outline" href="eristic26-tab/speaker/">Speaker tab</a>
       </div>
     </article>
   </main>
@@ -135,5 +158,26 @@
   <footer class="wrap">
     Tabs run on RoparCat, based on <a href="https://github.com/TabbycatDebate/tabbycat">Tabbycat</a> by the Tabbycat Debate Association.
   </footer>
+
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
+  <script>
+    // Same toggle as eristic26-tab/static/theme.js; the saved choice is shared across both.
+    (function () {
+      var root = document.documentElement, btn = document.getElementById('theme-toggle');
+      function sync() {
+        var dark = root.dataset.theme === 'dark';
+        btn.textContent = dark ? '☀️' : '🌙';
+        btn.setAttribute('aria-pressed', dark);
+        btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+      }
+      btn.addEventListener('click', function () {
+        var dark = root.dataset.theme !== 'dark';
+        if (dark) root.dataset.theme = 'dark'; else delete root.dataset.theme;
+        try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+        sync();
+      });
+      sync();
+    })();
+  </script>
 </body>
 </html>
